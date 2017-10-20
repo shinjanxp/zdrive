@@ -1,0 +1,40 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<section class="row"></section>
+<div class="row justify-content-md-center">
+	<div class="col-md-6">
+		
+		<div class="card">
+
+			<!--Card content-->
+			<div class="card-body">
+
+				<!-- Form login -->
+				<form action="{% url 'login' %}" method="POST">
+					<p class="h5 text-center mb-4">Login</p>
+					{% csrf_token %}
+					<div class="md-form">
+						<label for="id_username">Username:</label><br>
+						<input type="text" name="username" maxlength="150" autofocus required id="id_username" />
+					</div>
+					
+					<div class="md-form">
+						<label for="id_password">Password:</label><br>
+						<input type="password" name="password" id="id_password" required />
+					</div>
+
+					<div class="text-center">
+						<button class="btn btn-default">Login</button>
+					</div>
+					<p class="text-center">
+						<a href="/register" >Don't have an account? Register now</a>
+					</p>
+				</form>
+				<!-- Form login -->
+			</div>
+
+		</div>
+	</div>
+</div>
+{% endblock %}

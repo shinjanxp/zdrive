@@ -1,0 +1,75 @@
+{% extends 'layout.html' %}
+{% load guardian_tags %}
+{% block content %}
+<div class="row" style="padding-top:20px">
+	<div class="col-md-2">
+		<a href="/zdrive/directory/create/?path={{path}}" class="btn btn-danger">New Folder</a>
+		<a href="/zdrive/file/create/?path={{path}}" class="btn btn-primary">New File</a>
+		<hr>
+		<a href="/zdrive/shared/" style="color:#333"><h5>Shared with me</h5></a>
+		<hr>
+	</div>
+
+	<div class="col-md-10">
+		<div class="row">
+			<a href="/zdrive/home/?path={{parent_path}}">
+		<h3><i class="material-icons">arrow_back</i> &nbsp; {{parent_path}}</h3>
+			</a>
+		</div>
+		<!-- show folders and files here -->
+		<div class="row">
+			<p class="col-md-12">Directories</p>
+			{% for d in directories %}
+			<div class="directory-wrapper col-md-2" >
+				<a href="/zdrive/home/?path={{path}}{{d}}/"> 
+					<div class="card">
+						<!--Card content-->
+						<div class="card-body">
+							<!--Text-->
+					        <h5 class=" row justify-content-between">
+					        	<span class="col-xs-10">
+					        		<i class="material-icons">folder</i>
+					        		{{d}}
+					        	</span>
+					        	<a class="directory-edit-link" href="/zdrive/directory/edit?path={{path}}{{d}}/">
+					        		<i class="material-icons">edit</i>
+					        	</a>	
+					    	</h5>		
+						</div>
+
+					</div>
+				</a>
+			</div>
+			{% endfor %}	
+		</div>
+
+		<div class="row">
+			<p class="col-md-12">Files</p>
+			{% for d in files %}
+			<div class="directory-wrapper file-wrapper col-md-2" >
+				<a href="/zdrive/file/?path={{path}}{{d}}"> 
+					<div class="card">
+						<!--Card content-->
+						<div class="card-body">
+							<!--Text-->
+					        <h5 class=" row justify-content-between">
+					        	<span class="col-xs-10">
+					        		<i class="material-icons">insert_drive_file</i>
+					        		{{d}}
+					        	</span>
+					        	<!-- <a class="directory-edit-link">
+					        		<i class="material-icons">edit</i>
+					        	</a>	
+ -->
+					    	</h5>		
+						</div>
+
+					</div>
+				</a>
+			</div>
+			{% endfor %}	
+		</div>
+		
+	</div>
+</div>
+{% endblock %}

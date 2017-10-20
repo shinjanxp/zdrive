@@ -1,0 +1,73 @@
+{% extends 'layout.html' %}
+{% load zdrive_extras %}
+{% load guardian_tags %}
+{% block content %}
+<div class="row" style="padding-top:20px">
+	<div class="col-md-2">
+		<a href="/zdrive/home/" style="color:#333"><h5>Home</h5></a>
+
+	</div>
+
+	<div class="col-md-10">
+		<!-- show folders and files here -->
+		<div class="row">
+			<p class="col-md-12">Directories</p>
+			{% for d in directories %}
+			{% block perm %}
+			{% get_obj_perms user for d as "directory_perms" %}
+			<div class="directory-wrapper col-md-2" >
+				<a href="/zdrive/home/?path={{d.path}}"> 
+					<div class="card">
+						<!--Card content-->
+						<div class="card-body">
+							<!--Text-->
+					        <h5 class=" row justify-content-between">
+					        	<span class="col-xs-10">
+					        		<i class="material-icons">folder</i>
+					        		{{d.name}}
+					        	</span>
+					        	{% if "change_directory" in directory_perms %}
+					        	<a class="directory-edit-link" href="/zdrive/directory/edit?path={{d.path}}">
+					        		<i class="material-icons">edit</i>
+					        	</a>	
+					        	{% endif %}
+					    	</h5>		
+						</div>
+
+					</div>
+				</a>
+			</div>
+			{% endblock %}
+			{% endfor %}	
+		</div>
+
+		<div class="row">
+			<p class="col-md-12">Files</p>
+			{% for d in files %}
+			<div class="directory-wrapper col-md-2" >
+				<a href="/zdrive/file/?path={{d.path}}"> 
+					<div class="card">
+						<!--Card content-->
+						<div class="card-body">
+							<!--Text-->
+					        <h5 class=" row justify-content-between">
+					        	<span class="col-xs-10">
+					        		<i class="material-icons">insert_drive_file</i>
+					        		{{d.name}}
+					        	</span>
+					        	<!-- <a class="directory-edit-link">
+					        		<i class="material-icons">edit</i>
+					        	</a>	
+ -->
+					    	</h5>		
+						</div>
+
+					</div>
+				</a>
+			</div>
+			{% endfor %}	
+		</div>
+		
+	</div>
+</div>
+{% endblock %}

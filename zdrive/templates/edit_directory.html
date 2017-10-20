@@ -1,0 +1,72 @@
+{% extends 'layout.html' %}
+{% load zdrive_extras %}
+{% load guardian_tags %}
+{% block content %}
+<form method="POST">
+<div class="row">
+	<div class="form-inline col-md-10">
+		{% csrf_token %}
+		<div class="form-group mx-sm-3">
+			<label for="name" class="sr-only">Name</label>
+			<input type="text" class="form-control" id="name" name="name" value="{{name}}" placeholder="Name">
+		</div>
+		<button type="submit" class="btn btn-primary">SAVE</button>
+	</div>
+</div>
+
+<div class="row mx-3">
+	<!-- permissions section -->
+	<p class="col-12 row">
+		<span class="col-9">Permissions</span>	
+		<span class="col-1">View</span>	
+		<span class="col-1">Add</span>	
+		<span class="col-1">Change</span>	
+	</p>
+
+	<ul class="list-group col-12">
+		{% for user in users %}
+		{% block perm %}
+		<li class="list-group-item ">
+			<div class="media mb-1 row">
+				<div class="col-9 row">
+					<span class="rounded-circle avatar" style="background-color: {{user.username|avatar_color}}">{{user.username.0}}</span>
+					<div class="media-body align-middle ">
+						<h4 class="media-heading">{{user.username}} </h4>
+					</div>
+				</div>
+				
+				<center class="col-1">
+					{% get_obj_perms user for directory as "directory_perms" %}
+
+					{% if "view_directory" in directory_perms %}
+					    <input type="checkbox" id="id_{{user.id}}_view" name="view" value="{{user.id}}" checked/>
+					{% else %}
+						<input type="checkbox" id="id_{{user.id}}_view" name="view" value="{{user.id}}"/>
+					{% endif %}
+					<label for="id_{{user.id}}_view"><span ></span></label>
+				</center>
+				<center class="col-1">
+					{% if "add_directory" in directory_perms %}
+						<input type="checkbox" id="id_{{user.id}}_add" name="add" value="{{user.id}}" checked/>
+					{% else %}
+						<input type="checkbox" id="id_{{user.id}}_add" name="add" value="{{user.id}}" />
+					{% endif %}
+
+					<label for="id_{{user.id}}_add"><span ></span></label>
+				</center>
+				<center class="col-1">
+					{% if "change_directory" in directory_perms %}
+						<input type="checkbox" id="id_{{user.id}}_change" name="change" value="{{user.id}}" checked/>
+					{% else %}
+						<input type="checkbox" id="id_{{user.id}}_change" name="change" value="{{user.id}}"/>
+					{% endif %}
+					<label for="id_{{user.id}}_change"><span ></span></label>
+				</center>
+			</div>
+		</li>
+		{% endblock %}
+		{% endfor %}
+	</ul>
+</div>
+</form>
+{% endblock %}

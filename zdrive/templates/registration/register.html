@@ -1,0 +1,41 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<section class="row"></section>
+<div class="row justify-content-md-center">
+	<div class="col-md-6">
+		
+		<div class="card">
+
+			<!--Card content-->
+			<div class="card-body">
+				<form method="post">
+					{% csrf_token %}
+					{% for field in form %}
+					<div class="md-form">
+						{{ field.label_tag }}<br>
+						{{ field }}
+						{% if field.help_text %}
+						{% autoescape off %}
+							<small style="color: grey">{{ field.help_text }}</small>
+						{% endautoescape %}
+						{% endif %}
+						{% for error in field.errors %}
+						<p style="color: red">{{ error }}</p>
+						{% endfor %}
+					</div>
+					{% endfor %}
+					<div class="text-center">
+						<button class="btn btn-default">Register</button>
+					</div>
+					<p class="text-center">
+						<a href="/login" >Already have an account? Login</a>
+					</p>
+				</form>
+				<!-- Form login -->
+			</div>
+
+		</div>
+	</div>
+</div>
+{% endblock %}

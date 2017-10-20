@@ -1,0 +1,60 @@
+.directory-wrapper{
+	padding:5px;
+}
+.directory-wrapper a{
+	color:#333;
+}
+.file-wrapper.directory-wrapper a{
+	color:#2890b9;
+}
+h1,h2,h3,h4,h5,h6{
+	font-family: 'Roboto Slab', serif;
+}
+p,body{
+	font-family: 'Roboto', sans-serif;
+}
+body{
+	background-color: #eee;
+}
+.directory-edit-link{
+	visibility: hidden;
+
+}
+.directory-wrapper:hover .directory-edit-link{
+	visibility: visible;
+
+}
+.avatar{
+    width: 50px;
+    height: 50px;
+    padding: 10px;
+    padding-left: 20px;
+    font-size: 20px;
+    text-transform: uppercase;
+    color: white;
+    margin-right: 10px;
+    font-weight: bold;
+}
+input[type="checkbox"] {
+    display:none;
+}
+input[type="checkbox"] + label span {
+    display:inline-block;
+    border-radius: 2px;
+    height: 20px;
+    width: 20px;
+    background-color: transparent;
+    border-color: #5a5a5a;
+    transition: border .25s,background-color .25s,width .2s .1s,height .2s .1s,top .2s .1s,left .2s .1s;
+    z-index: 1;
+    border-style: solid;
+    border-width: 2px;
+    top: 0;
+    z-index: 0;
+    margin:-2px 10px 0 0;
+    vertical-align:middle;
+    background:#fff;
+    cursor:pointer;
+}
+input[type="checkbox"]:checked + label span {
+    background:#009688 -19px top no-repeat;

@@ -1,0 +1,211 @@
+{% load static %}
+
+<!-- Attempt to replicate Google Drive homepage: https://www.google.com/drive/ -->
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Google Drive - Cloud Storage &amp; File Backup for Photos, Docs &amp; More</title>
+	<meta charset="utf-8" name="author" content="Shinjan Mitra">
+	<style type="text/css">
+		body{
+			margin:0;
+			padding:0;
+			font:sans-serif;
+		}
+		.text-center{
+			text-align:center;
+		}
+		.w-50{
+			position: relative;
+			width:50%;
+			float:left;
+		}
+		.w-20{
+			position: relative;
+			width:20%;
+			float:left;
+		}
+		.w-30{
+			position: relative;
+			width:30%;
+			float:left;
+		}
+		.w-70{
+			position: relative;
+			width:70%;
+			float:left;
+		}
+		p{
+			color:rgb(64,64,64);
+			font-weight:100;
+			font-size:21px;
+		}
+		nav{
+			position: fixed;
+			height:70px;
+			background-color:white;
+			width:100%;
+			z-index:2;
+		}
+		nav .logo{
+			float:left;
+			position: relative;
+			margin:10px;
+		}
+		nav .links{
+			float:right;
+			padding-top:10px;
+		}
+		nav .links a{
+			color:#000;
+		}
+		ul li{
+			list-style: none;
+			display: inline;
+			margin:10px;
+		}
+		section .title{
+			font-size:48px;
+			font-family:sans-serif;
+			font-weight:200;
+			color:rgb(64,64,64);
+		}
+		a{
+			text-decoration: none;
+		}
+		.md-primary{
+			background-color:#4386fc;
+			border:none;
+			height:60px;
+			color:white;
+			font-size:17px;
+			padding:20px;
+			margin:40px;
+		}
+		section{
+			background-size:cover;
+			background-attachment: fixed;
+			background-position: center;
+		}
+		#intro{
+			background-image: url({% static "zdrive/intro-1600.jpg" %});
+		}
+		#intro img{
+			margin-top:200px;
+		}
+
+		#store{
+			padding:100px;
+			height:300px;
+		}
+
+		#surfboard{
+			background-image: url({% static "zdrive/photo-1-1600.jpg" %});
+			height:500px;
+		}
+		#anywhere{
+			padding:100px 0px 100px 100px;
+			height:500px;
+		}
+		#bowl{
+			background-image: url("https://www.google.com/drive/static/images/home/photo-2-1600.jpg");
+			height:500px;
+		}
+		#share{
+			padding:100px;
+		}
+
+		#jeans{
+			background-image: url("https://www.google.com/drive/static/images/home/photo-3-1600.jpg");
+			height:500px;
+		}
+
+		#start{
+			padding:100px;
+		}
+	</style>
+</head>
+<body>
+	<nav>
+		<div class="logo">
+			<img src="googlelogo.png">
+			<span style="position: relative;top:-10px; font-size:30px">ZDrive</span>
+		</div>
+		<div class="links">
+			<ul>
+				<li><a href="http://google.com/drive"><b>Meet Drive</b></a></li>
+				<li><a href="http://google.com/drive/using-drive">Using Drive</a></li>
+				<li><a href="http://google.com/drive/pricing">Pricing</a></li>
+				<li><a href="http://google.com/drive/download">Download</a></li>
+				<li><a href="https://www.google.com/work/apps/business/driveforwork/?utm_medium=et&utm_source=aboutdrive&utm_campaign=en&utm_content=consnav">For Work</a></li>
+				<li><a href="https://support.google.com/drive/answer/2424384?hl=en">Help</a></li>
+			</ul>
+		</div>
+	</nav>
+	<section id="intro">
+		<center>
+		<img src="https://www.google.com/drive/static/images/drive/logo-drive.png" width="100px">
+		<h1 class="title" style="color:white">A safe place for all your files</h1>
+		<a class="md-primary" href="/zdrive/home/">Go to ZDrive</a>
+		</center>
+	</section>
+	<section id="store">
+		<div class="w-50">
+			<img width="80%" src="https://google.com/drive/static/images/home/files.png" alt="Drive file types icons">
+
+		</div>
+		<div class="w-50">
+			<h1 class=title>Store any file</h1>
+			<p>Drive starts you with 15 GB of free Google online storage, so you can keep photos, stories, designs, drawings, recordings, videos – anything.</p>
+		</div>
+	</section>
+	<section id="surfboard">
+	</section>
+
+	<section id="anywhere">
+		<div class="w-30">
+			<h1 class=title>See your stuff anywhere</h1>
+			<p>Your files in Drive can be reached from any smartphone, tablet, or computer. So wherever you go, your files follow.
+</p>
+		</div>
+		<div class="w-70">
+			<img width="120%" style="position:relative; right:-200px" src="files-anywhere.jpg" alt="Files anywhere">
+
+		</div>
+	</section>
+
+	<section id="bowl"></section>
+
+	<section id="share">
+		<center>
+			<img src="https://www.google.com/drive/static/images/home/share.jpg">
+		</center>
+		<div class="text-center">
+			<h1 class="title">Share files and folders
+			</h1>
+			<p>You can quickly invite others to view, download, and collaborate on all the files you want–no email attachment needed.
+
+			</p>
+		</div>
+	</section>
+
+	<section id="jeans"></section>
+
+	<section id="start">
+		<center>
+		<img src="https://www.google.com/drive/static/images/drive/logo-drive.png" width="100px">
+		<h1 class="title" >Get started with Drive for free
+		</h1>
+		<a class="md-primary" href="/zdrive/home/">Go to ZDrive</a>
+
+		<a href="https://www.google.com/drive.download" style="padding:30px;display:block">Download Backup and Sync</a>
+		</center>
+	</section>
+</body>
+
+<script type="text/javascript">
+	var h = window.innerHeight;
+	document.getElementById('intro').style.height=h+'px';
+
+</script>
+</html>
