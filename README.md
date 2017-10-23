@@ -2,6 +2,7 @@
 * Python3
 * django 1.11
 * django-guardian
+* djangorestframework
 
 # Installation
 * Run `./setup.sh`

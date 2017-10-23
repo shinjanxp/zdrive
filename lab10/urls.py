@@ -17,6 +17,7 @@ from django.conf.urls import url
 from django.contrib import admin
 from django.conf.urls import include
 from zdrive import views
+from zdrive import api_views
 # from django.views.generic import RedirectView
 
 urlpatterns = [
@@ -25,5 +26,8 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^', include('django.contrib.auth.urls')),
     url(r'^register/', views.register, name="register"),
+    url(r'^api/register/', api_views.register, name="api_register"),
     url(r'^zdrive/', include('zdrive.urls')),
+    url(r'^api/zdrive/', include('zdrive.api_urls')),
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]

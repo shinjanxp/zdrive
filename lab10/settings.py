@@ -25,7 +25,7 @@ SECRET_KEY = 'kiubd4=@-e9gye*u5qxppnyw)nkhuoyndqi+f#zmyre+63wl$3'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['10.16.23.132','127.0.0.1','localhost']
 
 
 # Application definition
@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'guardian',
+    'rest_framework',
+    'rest_framework.authtoken',
     'zdrive',
 ]
 
@@ -129,3 +131,15 @@ LOGIN_REDIRECT_URL = '/zdrive/home'
 LOGIN_URL= '/login'
 
 ZDRIVE_ROOT = os.path.join(BASE_DIR,'zdrive/home/')
+
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        # 'rest_framework.permissions.IsAuthenticated',
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    )
+}
