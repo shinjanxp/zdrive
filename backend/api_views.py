@@ -20,6 +20,7 @@ from rest_framework.parsers import JSONParser
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 from django.core import serializers
+import mimetypes
 
 # Create your views here.
 ZDRIVE_ROOT = settings.ZDRIVE_ROOT
@@ -91,9 +92,11 @@ def home(request):
 @permission_classes((IsAuthenticated,))
 def shared(request):
 	shared_directories = get_objects_for_user(request.user, 'zdrive.view_directory')
-	shared_files = get_objects_for_user(request.user, 'zdrive.view_file')
-
-	return JsonResponse({'directories':shared_directories, 'files':shared_files,})
+	# shared_files = get_objects_for_user(request.user, 'zdrive.view_file')
+	shared_directories = DirectorySerializer(shared_directories, many=True)
+	# shared_files = DirectorySerializer(shared_files, many=True)
+	print(shared_directories.data)
+	return JsonResponse({'directories':shared_directories.data, 'files':[]})
 
 
 @api_view(['GET'])
@@ -210,17 +213,18 @@ def file_create(request):
 		for chunk in file_content.chunks():
 			fout.write(chunk)
 		fout.close()
-		File.objects.create(path = get_logical_path(abs_path), name=uploaded_filename)
+		File.objects.create(path = get_logical_path(full_filename), name=uploaded_filename)
 
 	return redirect("/api/zdrive/home/?path="+os.path.join(request.GET['path']))
 
-@login_required
 def file_show(request):
 	path = request.GET['path']
 	file_path = os.path.join(ZDRIVE_ROOT, path)
+	print(file_path)
 	if os.path.exists(file_path):
 		with open(file_path, 'rb') as fh:
-			response = HttpResponse(fh.read(), content_type="application/vnd.ms-excel")
+			print(mimetypes.MimeTypes().guess_type(file_path)[0])
+			response = HttpResponse(fh.read(), content_type=mimetypes.MimeTypes().guess_type(file_path)[0])
 			response['Content-Disposition'] = 'inline; filename=' + os.path.basename(file_path)
 			return response
 	raise Http404

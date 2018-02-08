@@ -9,6 +9,7 @@ from django.http import HttpResponse
 from django.contrib.auth.models import User
 from .models import Directory, File
 from guardian.shortcuts import assign_perm, remove_perm, get_objects_for_user
+import mimetypes
 # Create your views here.
 ZDRIVE_ROOT = settings.ZDRIVE_ROOT
 
@@ -173,7 +174,7 @@ def file_create(request):
 			for chunk in file_content.chunks():
 				fout.write(chunk)
 			fout.close()
-			File.objects.create(path = get_logical_path(abs_path), name=uploaded_filename)
+			File.objects.create(path = get_logical_path(full_filename), name=uploaded_filename)
 
 		return redirect("/zdrive/home/?path="+os.path.join(request.GET['path']))
 

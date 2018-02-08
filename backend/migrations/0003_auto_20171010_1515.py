@@ -8,7 +8,7 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('zdrive', '0002_auto_20171010_1510'),
+        ('backend', '0002_auto_20171010_1510'),
     ]
 
     operations = [

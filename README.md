@@ -6,6 +6,7 @@
 
 # Installation
 * Run `./setup.sh`
+* App will run on port 37483
 
 # Description
 

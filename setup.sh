@@ -1,3 +1,1 @@
-sudo pip3 install django-guardian
-sudo pip3 install djangorestframework
-python3 manage.py runserver
+python3 manage.py runserver 0.0.0.0:37483

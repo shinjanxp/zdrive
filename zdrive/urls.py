@@ -1,17 +1,33 @@
-from django.conf.urls import url
+"""zdrive URL Configuration
 
-from . import views
+The `urlpatterns` list routes URLs to views. For more information please see:
+    https://docs.djangoproject.com/en/1.11/topics/http/urls/
+Examples:
+Function views
+    1. Add an import:  from my_app import views
+    2. Add a URL to urlpatterns:  url(r'^$', views.home, name='home')
+Class-based views
+    1. Add an import:  from other_app.views import Home
+    2. Add a URL to urlpatterns:  url(r'^$', Home.as_view(), name='home')
+Including another URLconf
+    1. Import the include() function: from django.conf.urls import url, include
+    2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
+"""
+from django.conf.urls import url
+from django.contrib import admin
+from django.conf.urls import include
+from backend import views
+from backend import api_views
+# from django.views.generic import RedirectView
 
 urlpatterns = [
-    url(r'^$', views.index, name='index'),
-    url(r'^home/', views.home, name='home'),
-    url(r'^shared/', views.shared, name='shared'),
-    url(r'^directory/edit/', views.directory_edit, name='directory_edit'),
-    url(r'^directory/create/', views.directory_create, name='directory_create'),
-    # url(r'^directory/(?P<path>(.*))', views.directory_show, name='directory_show'),
 
-    url(r'^file/create/', views.file_create, name='file_create'),
-
-    url(r'^file/', views.file_show, name='file_show'),
-
+    url(r'^$', views.index),
+    url(r'^admin/', admin.site.urls),
+    url(r'^', include('django.contrib.auth.urls')),
+    url(r'^register/', views.register, name="register"),
+    url(r'^api/register/', api_views.register, name="api_register"),
+    url(r'^zdrive/', include('backend.urls')),
+    url(r'^api/zdrive/', include('backend.api_urls')),
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]
