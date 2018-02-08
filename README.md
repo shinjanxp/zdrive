@@ -5,6 +5,8 @@
 * djangorestframework
 
 # Installation
+* Create new virtualenv with python3 `virtualenv -p python3 zdrive`
+* pip install -r requirements.txt
 * Run `./setup.sh`
 * App will run on port 37483
 
